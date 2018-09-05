@@ -1,0 +1,24 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: white;
+  color: #363636;
+  height: 3.5em;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Lato', sans-serif;
+  border-bottom: 1px solid #6B6B6B;
+  align-items: center;
+}
+
+nav li {
+  list-style: none;
+  display: inline-block;
+}
+
+nav h3 {
+  margin-right: 8px;
+  margin-left: 16px;
+  font-weight: 300;
+}
