@@ -17,10 +17,6 @@ class Nav extends Component {
     })
   }
 
-  displayProdForm() {
-    this.props.displaySell()
-  }
-
   logOut() {
     this.props.logOut()
   }
@@ -37,17 +33,14 @@ class Nav extends Component {
               <li>
                 <h3>Welcome, {this.props.user}</h3>
               </li>
-              <li>
-                <button onClick={ () => this.displayProdForm() }>Sell</button>
-              </li>
             </span>
           }
           <li>
-            <button onClick = { () => isAuth ? this.logOut() : this.displayLogin()}> Log {isAuth ? "out" : "in"} </button>
+            <button className="btn-register" onClick = { () => isAuth ? this.logOut() : this.displayLogin()}> Log {isAuth ? "out" : "in"} </button>
           </li>
           { !isAuth &&
           <li>
-            <button onClick={ () => this.displayRegister()}>Register</button>
+            <button className="btn-register" onClick={ () => this.displayRegister()}>Register</button>
           </li>
           }
         </ul>

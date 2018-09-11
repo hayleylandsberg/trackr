@@ -1,0 +1,25 @@
+.container-drag {
+    display: flex;
+    flex-direction: row;
+    margin: 40px;
+    justify-content: space-between;
+}
+
+
+.draggable {
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+div .droppable {
+    background-color: #EAEAEB;
+    min-height: 500px;
+    width: 220px;
+}
+
+div .wishlist {
+    background-color: #EAEAEB;
+    min-height: 500px;
+    width: 220px;
+}

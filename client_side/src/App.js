@@ -3,6 +3,7 @@ import './App.css';
 import Auth from './auth-component'
 import Nav from './nav-component'
 import ProductForm from './product-component'
+import AppDragDropDemo from './drag-drop-component';
 
 class App extends Component {
 
@@ -12,10 +13,6 @@ class App extends Component {
     first_name: "",
     last_name: "",
     email: "",
-    street: "",
-    city: "",
-    state: "",
-    zip: "",
     isAuth: false,
     register: false,
     showUserForm: false,
@@ -39,9 +36,6 @@ class App extends Component {
     this.setState(authObj)
   }
 
-  displaySell() {
-    this.setState({showSellForm: true})
-  }
 
   logOut() {
     console.log("log OUT", localStorage.getItem("token"));
@@ -58,13 +52,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Nav isAuth={this.state.isAuth} user={this.state.user} setAuthState={ (obj) => this.setAuthState(obj)} displaySell={ () => this.displaySell()} logOut={ () => this.logOut()}/>
-        <h1>Trackr Dashboard</h1>
+        <Nav isAuth={this.state.isAuth} user={this.state.user} setAuthState={ (obj) => this.setAuthState(obj)} logOut={ () => this.logOut()}/>
+        <div className="flex-app">
+          <div>
+            <h1><span>👋</span> Hi there!</h1>
+            <h1>Welcome to</h1>
+            <h1 className="bold">Trackr</h1>
+            <h2>The easiest way to manage<br></br>your job application process</h2>
+          </div>
+        <div className="flex-log-on">
+          <input className="input-log-on" placeholder="Username"></input>
+          <input className="input-log-on" placeholder="Password" type="password"></input>
+          <button className="btn-log-on">Log On</button>
+        </div>
+        </div>
 
         {this.state.showUserForm ? <Auth authState={this.state} setAuthState={ (obj) => this.setAuthState(obj)} /> : null}
 
         {this.state.showSellForm ? <ProductForm token={localStorage.getItem("token")}/> : null}
 
+        <AppDragDropDemo />
       </div>
     );
   }

@@ -72,10 +72,6 @@ class Auth extends Component {
       last_name,
       email,
       password,
-      street,
-      city,
-      state,
-      zip,
       register
     } = this.props.authState
     return (
@@ -103,37 +99,9 @@ class Auth extends Component {
             value={email}
             onChange={e => this.onChange(e)}
           />
-          <input
-            type="text"
-            placeholder="street address"
-            name="street"
-            value={street}
-            onChange={e => this.onChange(e)}
-          />
-          <input
-            type="text"
-            placeholder="city"
-            name="city"
-            value={city}
-            onChange={e => this.onChange(e)}
-          />
-          <input
-            type="text"
-            placeholder="state (NY)"
-            name="state"
-            value={state}
-            onChange={e => this.onChange(e)}
-          />
-          <input
-            type="text"
-            placeholder="zipcode"
-            name="zip"
-            value={zip}
-            onChange={e => this.onChange(e)}
-          />
         </div>
         }
-          <input
+        <input
             type="text"
             name="username"
             placeholder="username"

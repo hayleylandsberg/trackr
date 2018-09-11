@@ -22,3 +22,14 @@ nav h3 {
   margin-left: 16px;
   font-weight: 300;
 }
+
+.btn-register {
+  background-color: white;
+  border: 1px solid #363636;
+  color: #363636;
+  border-radius: 5px;
+  font-size: .8em;
+  margin-right: 10px;
+  width: 70px;
+  height: 25px;
+}

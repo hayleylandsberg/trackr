@@ -1,2 +1,3 @@
-from .customer_serializer import *
-from .product_serializer import *
+from .jobs_serializer import JobSerializer
+from .notes_serializer import NoteSerializer
+from .tasks_serializer import TaskSerializer
