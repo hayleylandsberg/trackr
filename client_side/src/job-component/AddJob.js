@@ -37,13 +37,29 @@ export default class AddJob extends Component {
 
     activeUser = localStorage.getItem("yakId")
 
+    handleChangeImage(evt) {
+        console.log("Uploading");
+        let self = this
+        const reader = new FileReader();
+        let file = evt.target.files[0];
+    
+        reader.onload = function (upload) {
+          self.setState({
+            image: upload.target.result
+          });
+          console.log(self.state.image);
+        };
+        reader.readAsDataURL(file);
+        console.log("Uploaded");
+      }
+      
     handleFieldChange = function (evt) {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }.bind(this);
 
-    createDoctor = function(){
+    createJob = function(){
          // Create user in API
          fetch(`http://localhost:5001/doctors?&userId=${this.props.activeUser}&_sort=id&_order=desc&_expand=user`, {
             method: "POST",
@@ -66,6 +82,7 @@ export default class AddJob extends Component {
             swal("Success!", "Your doctor has been added to your Doctors List.", "success")
             this.props.displayAllJobs()
         })
+        
     }.bind(this);
 
     render() {
@@ -85,6 +102,16 @@ export default class AddJob extends Component {
             <input onChange={this.handleFieldChange} type="jobPostUrl" id="jobPostUrl" className="form-control" placeholder="Job Post URL" required="" autoFocus="" />
             <label htmlFor="inputdescription" className="sr-only">Description</label>
             <input onChange={this.handleFieldChange} type="description" id="description" className="form-control" placeholder="Description" required="" autoFocus="" />
+            <label htmlFor="inputdescription" className="sr-only">Company Logo</label>
+            <input
+                  ref="file"
+                  type="file"
+                  placeholder="Image"
+                  name="image"
+                  id="file"
+                  onChange={e => this.handleChangeImage(e)}
+                  encType="multipart/form-data"
+                />
             </div>
             <div className="btn-center-flex">
             <button className="new-job-btn" type="button" onClick={this.createJob}>Add Job</button>
