@@ -31,7 +31,7 @@ class Nav extends Component {
           { isAuth &&
             <span>
               <li>
-                <h3>Welcome, {this.props.user}</h3>
+                {/* <h3>Welcome, {this.props.user}</h3> */}
               </li>
             </span>
           }

@@ -63,6 +63,7 @@ class Auth extends Component {
       console.log("new user created")
       this.props.setAuthState({showUserForm: false, isAuth: true})
     })
+    .then()
   }
 
   render() {
@@ -101,24 +102,28 @@ class Auth extends Component {
           />
         </div>
         }
-        <input
-            type="text"
-            name="username"
-            placeholder="username"
-            value={username}
-            onChange={e => this.onChange(e)}
-          />
-          <input
-            type="password"
-            placeholder="password"
-            name="password"
-            value={password}
-            onChange={e => this.onChange(e)}
-          />
-          <button onClick = {() => register ? this.register() : this.login()}>Submit</button>
+        <div className="flex-app">
+  <div>
+    <h1><span>👋</span> Hi there!</h1>
+    <h1>Welcome to</h1>
+    <h1 className="bold">Trackr</h1>
+    <h2>The easiest way to manage<br></br>your job application process</h2>
+  </div>
+  <div className="flex-log-on">
+    <input className="input-log-on" placeholder="Username" type="text" name="username" value={username} onChange={e => this.onChange(e)}></input>
+    <input className="input-log-on" placeholder="Password" type="password"
+    name="password" value={password} onChange={e => this.onChange(e)}></input>
+    <button className="btn-log-on" onClick = {() => register ? this.register() : this.login()}>Log On</button>
+  </div>
+</div>
+
+
+
+          
       </div>
     );
   }
 }
 
 export default Auth
+

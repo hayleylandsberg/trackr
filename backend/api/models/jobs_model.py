@@ -15,7 +15,8 @@ class Job(models.Model):
   interview_date1 = models.DateField(null=True)
   interview_date2 = models.DateField(null=True)
   offer_date = models.DateField(null=True)
-  card_color = models.CharField(max_length=7, default="#FFFFFF")
+  card_color = models.CharField(max_length=7, default="#FFFFFF", editable=True)
+  category = models.CharField(max_length=25, default="wishlist", editable=True)
 
   def __str__(self):
     return self.company
