@@ -12,8 +12,7 @@ const customStyles = {
       transform             : 'translate(-50%, -50%)'
     }
   }
-
-
+  
 export default class AddJob extends Component {
 
     state={
@@ -52,7 +51,7 @@ export default class AddJob extends Component {
         reader.readAsDataURL(file);
         console.log("Uploaded");
       }
-      
+
     handleFieldChange = function (evt) {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
@@ -61,25 +60,26 @@ export default class AddJob extends Component {
 
     createJob = function(){
          // Create user in API
-         fetch(`http://localhost:5001/doctors?&userId=${this.props.activeUser}&_sort=id&_order=desc&_expand=user`, {
+         fetch(`http://127.0.0.1:8000/create_job/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: this.state.name,
-                specialty: this.state.specialty,
-                facility: this.state.facility,
-                address: this.state.address,
-                phoneNumber: this.state.phoneNumber,
-                userId: parseInt(this.activeUser)
+                company: this.state.company,
+                title: this.state.title,
+                location: this.state.location,
+                salary: this.state.salary,
+                url: this.state.url,
+                description: this.state.description,
+                image: this.state.image
             })
         })
 
         // Set local storage with newly created user's id and show home view
         .then(newUser => {
             this.props.onRequestClose()
-            swal("Success!", "Your doctor has been added to your Doctors List.", "success")
+            swal("Success!", "Your job has been added to your dashboard.", "success")
             this.props.displayAllJobs()
         })
         
@@ -93,13 +93,13 @@ export default class AddJob extends Component {
             <label htmlFor="inputCompany" className="sr-only">Company</label>
             <input onChange={this.handleFieldChange} type="name" id="name" className="form-control" placeholder="Company" required="" autoFocus="" />
             <label htmlFor="inputTitle" className="sr-only">Job Title</label>
-            <input onChange={this.handleFieldChange} type="title" id="specialty" className="form-control" placeholder="Job Title" required="" />
+            <input onChange={this.handleFieldChange} type="title" id="title" className="form-control" placeholder="Job Title" required="" />
             <label htmlFor="inputLocation" className="sr-only">Location</label>
             <input onChange={this.handleFieldChange} type="location" id="location" className="form-control" placeholder="Location" required="" autoFocus="" />
             <label htmlFor="inputSalary" className="sr-only">Salary</label>
             <input onChange={this.handleFieldChange} type="salary" id="salary" className="form-control" placeholder="Salary" required="" autoFocus="" />
             <label htmlFor="inputUrl" className="sr-only">Job Post URL</label>
-            <input onChange={this.handleFieldChange} type="jobPostUrl" id="jobPostUrl" className="form-control" placeholder="Job Post URL" required="" autoFocus="" />
+            <input onChange={this.handleFieldChange} type="jobPostUrl" id="url" className="form-control" placeholder="Job Post URL" required="" autoFocus="" />
             <label htmlFor="inputdescription" className="sr-only">Description</label>
             <input onChange={this.handleFieldChange} type="description" id="description" className="form-control" placeholder="Description" required="" autoFocus="" />
             <label htmlFor="inputdescription" className="sr-only">Company Logo</label>

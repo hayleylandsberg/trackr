@@ -4,7 +4,7 @@ import RegModal from "../job-component/RegModalJob"
 
 export default class Dashboard extends Component {
     state = {
-        tasks: [
+        jobs: [
             {name:"Google", title:"Software Engineer", location:"San Francisco, CA", category:"wishlist", bgcolor: "#ED5565"},
             {name:"Shipt", title:"UX Designer", location:"San Francisco, CA", category:"wishlist", bgcolor:"#FFCE54"},
             {name:"Airbnb", title:"Product Designer", location:"San Francisco, CA", category:"applied", bgcolor:"#48CFAD"},
@@ -29,21 +29,21 @@ export default class Dashboard extends Component {
     onDrop = (ev, cat) => {
        let id = ev.dataTransfer.getData("id");
        
-       let tasks = this.state.tasks.filter((task) => {
-           if (task.name == id) {
-               task.category = cat;
+       let jobs = this.state.jobs.filter((job) => {
+           if (job.name == id) {
+               job.category = cat;
            }
-           return task;
+           return job;
        });
 
        this.setState({
            ...this.state,
-           tasks
+           jobs
        });
     }
 
     render() {
-        let tasks = {
+        let jobs = {
             wishlist: [],
             applied: [],
             phone: [],
@@ -52,8 +52,8 @@ export default class Dashboard extends Component {
             rejected: []
         }
 
-        this.state.tasks.forEach ((t) => {
-            tasks[t.category].push(
+        this.state.jobs.forEach ((t) => {
+            jobs[t.category].push(
                 <div key={t.name} 
                     onDragStart = {(e) => this.onDragStart(e, t.name)}
                     draggable
@@ -79,37 +79,37 @@ export default class Dashboard extends Component {
                 <div className="wishlist"
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>{this.onDrop(e, "wishlist")}}>
-                    <div className="task-header">WISH LIST</div>
-                    {tasks.wishlist}
+                    <div className="job-header">WISH LIST</div>
+                    {jobs.wishlist}
                 </div>
                 <div className="droppable" onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "applied")}>
-                     <div className="task-header">APPLIED</div>
-                    {tasks.applied}
+                     <div className="job-header">APPLIED</div>
+                    {jobs.applied}
                 </div>
                 <div className="droppable" 
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "phone")}>
-                     <div className="task-header">PHONE</div>
-                     {tasks.phone}
+                     <div className="job-header">PHONE</div>
+                     {jobs.phone}
                 </div>
                 <div className="droppable" 
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "onsite")}>
-                     <div className="task-header">ONSITE</div>
-                     {tasks.onsite}
+                     <div className="job-header">ONSITE</div>
+                     {jobs.onsite}
                 </div>
                 <div className="droppable" 
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "offer")}>
-                     <div className="task-header">OFFER</div>
-                     {tasks.offer}
+                     <div className="job-header">OFFER</div>
+                     {jobs.offer}
                 </div>
                 <div className="droppable" 
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "rejected")}>
-                     <div className="task-header">REJECTED</div>
-                     {tasks.rejected}
+                     <div className="job-header">REJECTED</div>
+                     {jobs.rejected}
                 </div>
             </div>
           </div>

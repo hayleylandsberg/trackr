@@ -16,7 +16,10 @@ class App extends Component {
     register: false,
     showUserForm: false,
     user: "",
-    showSellForm: false
+    showSellForm: false,
+    userJobs: "",
+    jobTasks: "",
+    jobNotes: ""
   }
 
   componentDidMount() {
@@ -29,12 +32,75 @@ class App extends Component {
         user: user
       });
     }
+    this.getUserJobs();
+    // this.getJobNotes();
+    // this.getJobTasks();
   }
 
   setAuthState(authObj) {
     this.setState(authObj)
   }
 
+  getUserJobs() {
+  let token = localStorage.getItem("token")
+  fetch(`http://127.0.0.1:8000/jobs/`, {
+    method: 'GET',
+    headers: {
+      "Authorization": `Token ${token}`
+    }
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((jobs) => {
+      console.log('userJobs', jobs);
+      this.setState({ userJobs: jobs })
+    })
+    .catch((err) => {
+      console.log("fetch no like you, brah", err);
+    })
+  }
+
+
+  // getJobNotes() {
+  //   let token = localStorage.getItem("token")
+  //   fetch(`http://127.0.0.1:8000/notes/`, {
+  //     method: 'GET',
+  //     headers: {
+  //       "Authorization": `Token ${token}`
+  //     }
+  //   })
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((notes) => {
+  //       console.log('jobNotes', notes);
+  //       this.setState({ jobNotes: notes })
+  //     })
+  //     .catch((err) => {
+  //       console.log("fetch no like you, brah", err);
+  //     })
+  //   }
+  
+    // getJobTasks() {
+    //   let token = localStorage.getItem("token")
+    //   fetch(`http://127.0.0.1:8000/tasks/`, {
+    //     method: 'GET',
+    //     headers: {
+    //       "Authorization": `Token ${token}`
+    //     }
+    //   })
+    //     .then((response) => {
+    //       return response.json();
+    //     })
+    //     .then((tasks) => {
+    //       console.log('jobTasks', tasks);
+    //       this.setState({ jobTasks: tasks })
+    //     })
+    //     .catch((err) => {
+    //       console.log("fetch no like you, brah", err);
+    //     })
+    //   }
 
   logOut() {
     console.log("log OUT", localStorage.getItem("token"));

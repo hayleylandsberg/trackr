@@ -18,11 +18,14 @@ from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-from api.views import register_view
+from api.views import register_view, jobs_view, create_job_view#, notes_view, tasks_view
 
 router = routers.DefaultRouter()
 # router.register(r'users', register_view.UserViewSet)
-# router.register(r'product_types', product_view.ProductTypeViewSet)
+router.register(r'jobs', jobs_view.JobViewSet, base_name='jobs')
+router.register(r'create_jobs', create_job_view.CreateJobViewSet, base_name='create_jobs')
+# router.register(r'notes', notes_view.NoteViewSet, base_name='notes')
+# router.register(r'tasks', tasks_view.TaskViewSet, base_name='tasks')
 # router.register(r'products', product_view.ProductViewSet)
 
 urlpatterns = [
