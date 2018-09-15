@@ -102,7 +102,7 @@ export default class AddJob extends Component {
             <input onChange={this.handleFieldChange} type="jobPostUrl" id="url" className="form-control" placeholder="Job Post URL" required="" autoFocus="" />
             <label htmlFor="inputdescription" className="sr-only">Description</label>
             <input onChange={this.handleFieldChange} type="description" id="description" className="form-control" placeholder="Description" required="" autoFocus="" />
-            <label htmlFor="inputdescription" className="sr-only">Company Logo</label>
+            {/* <label htmlFor="inputdescription" className="sr-only">Company Logo</label>
             <input
                   ref="file"
                   type="file"
@@ -111,8 +111,25 @@ export default class AddJob extends Component {
                   id="file"
                   onChange={e => this.handleChangeImage(e)}
                   encType="multipart/form-data"
-                />
+                /> */}
             </div>
+
+            <div>
+            <label htmlFor="inputdescription" className="sr-only">Selection Color</label>
+            <div className="flex-color">
+                <button className="color-btn"><img src={require('../images/coral.png')}></img></button>
+                <button className="color-btn"><img src={require('../images/orange.png')}></img></button>
+                <button className="color-btn"><img src={require('../images/yellow.png')}></img></button>
+                <button className="color-btn"><img src={require('../images/green.png')}></img></button>
+                <button className="color-btn"><img src={require('../images/mint.png')}></img></button>
+                <button className="color-btn"><img src={require('../images/aqua.png')}></img></button>
+                <button className="color-btn"><img src={require('../images/blue.png')}></img></button>
+                <button className="color-btn"><img src={require('../images/purple.png')}></img></button>
+                <button className="color-btn"><img src={require('../images/pink.png')}></img></button>
+                <button className="color-btn"><img src={require('../images/gray.png')}></img></button>
+            </div>
+            </div>
+
             <div className="btn-center-flex">
             <button className="new-job-btn" type="button" onClick={this.createJob}>Add Job</button>
             </div>
