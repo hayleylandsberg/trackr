@@ -76,9 +76,14 @@ export default class Dashboard extends Component {
                     className="draggable"
                     style = {{backgroundColor: t.card_color}}
                 >
-                    <p className="name">{t.company}</p>
-                    <p className="title">{t.title}</p>
-                    <p className="location">{t.location}</p>
+                    <div>
+                        <img src={require("../images/trackr-circle-logo.png")}></img>
+                    </div>
+                    <div className="flex-card-text">
+                        <p className="name">{t.company}</p>
+                        <p className="title">{t.title}</p>
+                        <p className="location">{t.location}</p>
+                    </div>
                 </div>
             );
         });
@@ -95,36 +100,48 @@ export default class Dashboard extends Component {
                 <div className="wishlist"
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>{this.onDrop(e, "wishlist")}}>
-                    <div className="job-header">WISH LIST</div>
+                    <div className="job-header">WISH LIST
+                    <img src={require("../images/wishlist.png")}></img>
+                    </div>
                     {jobs.wishlist}
                 </div>
                 <div className="droppable" onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "applied")}>
-                     <div className="job-header">APPLIED</div>
+                     <div className="job-header">APPLIED
+                     <img src={require("../images/applied.png")}></img>
+                     </div>
                     {jobs.applied}
                 </div>
                 <div className="droppable" 
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "phone")}>
-                     <div className="job-header">PHONE</div>
+                     <div className="job-header">PHONE
+                     <img src={require("../images/call.png")}></img>
+                     </div>
                      {jobs.phone}
                 </div>
                 <div className="droppable" 
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "onsite")}>
-                     <div className="job-header">ONSITE</div>
+                     <div className="job-header">ONSITE
+                     <img src={require("../images/skyline.png")}></img>
+                     </div>
                      {jobs.onsite}
                 </div>
                 <div className="droppable" 
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "offer")}>
-                     <div className="job-header">OFFER</div>
+                     <div className="job-header">OFFER
+                     <img src={require("../images/handshake.png")}></img>
+                     </div>
                      {jobs.offer}
                 </div>
                 <div className="droppable" 
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "rejected")}>
-                     <div className="job-header">REJECTED</div>
+                     <div className="job-header">REJECTED
+                     <img src={require("../images/no-stopping.png")}></img>
+                     </div>
                      {jobs.rejected}
                 </div>
             </div>

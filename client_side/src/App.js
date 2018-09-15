@@ -116,18 +116,9 @@ class App extends Component {
     else if (this.state.isAuth === true) {
       switch (this.state.currentView) {
         case 'home':
-          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange} getUserJobs={this.getUserJobs()}/>
-        // case 'profile':
-        //   return <Profile resource={this.state.profileData} />
-        // case 'addPet':
-        //   return <AddPetForm viewHandler={this.showView} />
-        // case 'addAllergy':
-        //   return <AllergiesForm viewHandler={this.showView} userPets={this.state.userPets} />
-        // // addCommand
-        // case 'addCommand':
-        //   return <CommandsForm viewHandler={this.showView} userPets={this.state.userPets} />
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange} />
         default:
-          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange} getUserJobs={this.getUserJobs()}/>
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange} />
 
       }
     }
