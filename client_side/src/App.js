@@ -17,9 +17,10 @@ class App extends Component {
     showUserForm: false,
     user: "",
     showSellForm: false,
-    userJobs: "",
+    userJobs: [],
     jobTasks: "",
-    jobNotes: ""
+    jobNotes: "",
+    catChange: ''
   }
 
   componentDidMount() {
@@ -54,53 +55,15 @@ class App extends Component {
     })
     .then((jobs) => {
       console.log('userJobs', jobs);
-      this.setState({ userJobs: jobs })
+      this.setState({ userJobs: jobs }, () => {
+        console.log("jobs", this.state.userJobs)
+      })
     })
     .catch((err) => {
       console.log("fetch no like you, brah", err);
     })
   }
 
-
-  // getJobNotes() {
-  //   let token = localStorage.getItem("token")
-  //   fetch(`http://127.0.0.1:8000/notes/`, {
-  //     method: 'GET',
-  //     headers: {
-  //       "Authorization": `Token ${token}`
-  //     }
-  //   })
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((notes) => {
-  //       console.log('jobNotes', notes);
-  //       this.setState({ jobNotes: notes })
-  //     })
-  //     .catch((err) => {
-  //       console.log("fetch no like you, brah", err);
-  //     })
-  //   }
-  
-    // getJobTasks() {
-    //   let token = localStorage.getItem("token")
-    //   fetch(`http://127.0.0.1:8000/tasks/`, {
-    //     method: 'GET',
-    //     headers: {
-    //       "Authorization": `Token ${token}`
-    //     }
-    //   })
-    //     .then((response) => {
-    //       return response.json();
-    //     })
-    //     .then((tasks) => {
-    //       console.log('jobTasks', tasks);
-    //       this.setState({ jobTasks: tasks })
-    //     })
-    //     .catch((err) => {
-    //       console.log("fetch no like you, brah", err);
-    //     })
-    //   }
 
   logOut() {
     console.log("log OUT", localStorage.getItem("token"));
@@ -138,6 +101,14 @@ class App extends Component {
 
   }.bind(this)
 
+  setJobState(userJobs) {
+    this.setState({
+      ...this.state,
+      userJobs
+    });
+  }
+
+
   View = () => {
     if (this.state.isAuth === false) {
       return this.state.showUserForm ? <Auth authState={this.state} setAuthState={(obj) => this.setAuthState(obj)} /> : null
@@ -145,7 +116,7 @@ class App extends Component {
     else if (this.state.isAuth === true) {
       switch (this.state.currentView) {
         case 'home':
-          return <Dashboard user={this.state.user}/>
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange} getUserJobs={this.getUserJobs()}/>
         // case 'profile':
         //   return <Profile resource={this.state.profileData} />
         // case 'addPet':
@@ -156,12 +127,11 @@ class App extends Component {
         // case 'addCommand':
         //   return <CommandsForm viewHandler={this.showView} userPets={this.state.userPets} />
         default:
-          return <Dashboard user={this.state.user}/>
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange} getUserJobs={this.getUserJobs()}/>
 
       }
     }
   }
-
 
 
   

@@ -3,19 +3,36 @@ import './dragdrop.css';
 import RegModal from "../job-component/RegModalJob"
 
 export default class Dashboard extends Component {
-    state = {
-        jobs: [
-            {name:"Google", title:"Software Engineer", location:"San Francisco, CA", category:"wishlist", bgcolor: "#ED5565"},
-            {name:"Shipt", title:"UX Designer", location:"San Francisco, CA", category:"wishlist", bgcolor:"#FFCE54"},
-            {name:"Airbnb", title:"Product Designer", location:"San Francisco, CA", category:"applied", bgcolor:"#48CFAD"},
-            {name:"TeacherFindr", title:"UX Designer", location:"San Francisco, CA", category:"rejected", bgcolor:"#5D9CEC"},
-            {name:"Facebook", title:"UX Designer", location:"San Francisco, CA", category:"offer", bgcolor:"#EC87C0"},
-            {name:"Twitter", title:"UX Designer", location:"San Francisco, CA", category:"rejected", bgcolor:"#FC6E51"},
-            {name:"Instacart", title:"UI Engineer", location:"San Francisco, CA", category:"offer", bgcolor:"#A0D468"},
-            {name:"Nextdoor", title:"UX/UI Designer", location:"San Francisco, CA", category:"phone", bgcolor:"#AC92EC"},
-            {name:"Apple", title:"Product Designer", location:"San Francisco, CA", category:"onsite", bgcolor:"#4FC1E9"}
-          ]
-    }
+    // state = {
+    //     jobs: [
+    //         {name:"Google", title:"Software Engineer", location:"San Francisco, CA", category:"wishlist", bgcolor: "#ED5565"},
+    //         {name:"Shipt", title:"UX Designer", location:"San Francisco, CA", category:"wishlist", bgcolor:"#FFCE54"},
+    //         {name:"Airbnb", title:"Product Designer", location:"San Francisco, CA", category:"applied", bgcolor:"#48CFAD"},
+    //         {name:"TeacherFindr", title:"UX Designer", location:"San Francisco, CA", category:"rejected", bgcolor:"#5D9CEC"},
+    //         {name:"Facebook", title:"UX Designer", location:"San Francisco, CA", category:"offer", bgcolor:"#EC87C0"},
+    //         {name:"Twitter", title:"UX Designer", location:"San Francisco, CA", category:"rejected", bgcolor:"#FC6E51"},
+    //         {name:"Instacart", title:"UI Engineer", location:"San Francisco, CA", category:"offer", bgcolor:"#A0D468"},
+    //         {name:"Nextdoor", title:"UX/UI Designer", location:"San Francisco, CA", category:"phone", bgcolor:"#AC92EC"},
+    //         {name:"Apple", title:"Product Designer", location:"San Francisco, CA", category:"onsite", bgcolor:"#4FC1E9"}
+    //       ]
+    // }
+
+    // updateCat = function(catId){
+    //     // Create user in API
+    //     fetch(`http://127.0.0.1:8000/jobs/${catId}`, {
+    //        method: "PATCH",
+    //        headers: {
+    //            "Content-Type": "application/json"
+    //        },
+    //        body: JSON.stringify({
+    //            category: this.props.catChange
+    //        })
+    //    })
+    //    // Set local storage with newly created user's id and show home view
+    // //    .then(e => {
+    // //        this.props.getUserJobs();
+    // //     })
+    // }.bind(this);
 
     onDragStart = (ev, id) => {
         console.log('dragstart:',id);
@@ -29,17 +46,16 @@ export default class Dashboard extends Component {
     onDrop = (ev, cat) => {
        let id = ev.dataTransfer.getData("id");
        
-       let jobs = this.state.jobs.filter((job) => {
+       let jobs = this.props.userJobs.filter((job) => {
            if (job.name == id) {
                job.category = cat;
            }
            return job;
        });
 
-       this.setState({
-           ...this.state,
+       this.props.setJobState(
            jobs
-       });
+       );
     }
 
     render() {
@@ -52,15 +68,15 @@ export default class Dashboard extends Component {
             rejected: []
         }
 
-        this.state.jobs.forEach ((t) => {
+        this.props.userJobs.forEach ((t) => {
             jobs[t.category].push(
-                <div key={t.name} 
-                    onDragStart = {(e) => this.onDragStart(e, t.name)}
+                <div key={t.company} 
+                    onDragStart = {(e) => this.onDragStart(e, t.company)}
                     draggable
                     className="draggable"
-                    style = {{backgroundColor: t.bgcolor}}
+                    style = {{backgroundColor: t.card_color}}
                 >
-                    <p className="name">{t.name}</p>
+                    <p className="name">{t.company}</p>
                     <p className="title">{t.title}</p>
                     <p className="location">{t.location}</p>
                 </div>
