@@ -90,10 +90,22 @@ export default class AddJob extends Component {
         this.setState(stateToChange)
     }.bind(this);
 
+    displaySuccess(data) {
+        console.log("Job Added Bitchesssss!", data)
+    }
+
+    changeColor(color){
+        this.setState({
+            card_color: color
+       })
+       console.log("Change color")
+    }
+    
+
     createJob = function(){
          // Create user in API
          let token = localStorage.getItem("token")
-         fetch(`http://127.0.0.1:8000/create_job/`, {
+         fetch(`http://127.0.0.1:8000/create_jobs/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -106,16 +118,25 @@ export default class AddJob extends Component {
                 salary: this.state.salary,
                 url: this.state.url,
                 description: this.state.description,
-                cat_color: this.state.card_color
+                card_color: this.state.card_color
             })
         })
 
-            
+        .then(response => {
+            return response.json()
+        })
+
+        .then(response => {
+            return this.displaySuccess(response)
+        })
         // Set local storage with newly created user's id and show home view
         .then(newJob => {
             this.props.onRequestClose()
             swal("Success!", "Your job has been added to your dashboard.", "success")
             this.getUserJobs()
+        })
+        .catch((err) => {
+            return console.log("You SUCK!!!", err)
         })
         
     }.bind(this);
@@ -152,16 +173,16 @@ export default class AddJob extends Component {
             <div>
             <label htmlFor="inputdescription" className="sr-only">Select Color</label>
             <div className="flex-color">
-                <button className="color-btn"><img src={coral} alt="coral"></img></button>
-                <button className="color-btn"><img src={orange} alt="orange"></img></button>
-                <button className="color-btn"><img src={yellow} alt="yellow"></img></button>
-                <button className="color-btn"><img src={green} alt="green"></img></button>
-                <button className="color-btn"><img src={mint} alt="mint"></img></button>
-                <button className="color-btn"><img src={aqua} alt="aqua"></img></button>
-                <button className="color-btn"><img src={blue} alt="blue"></img></button>
-                <button className="color-btn"><img src={purple} alt="purple"></img></button>
-                <button className="color-btn"><img src={pink} alt="pink"></img></button>
-                <button className="color-btn"><img src={gray} alt="gray"></img></button>
+                <img src={coral} alt="coral" onClick={()=> this.changeColor("#ED5565")}></img>
+                <img src={orange} alt="orange" onClick={()=> this.changeColor("#FC6E51")}></img>
+                <img src={yellow} alt="yellow" onClick={()=> this.changeColor("#FFCE00")}></img>
+                <img src={green} alt="green" onClick={()=> this.changeColor("#A0D468")}></img>
+                <img src={mint} alt="mint" onClick={()=> this.changeColor("#48CFAD")}></img>
+                <img src={aqua} alt="aqua" onClick={()=> this.changeColor("#4FC1E9")}></img>
+                <img src={blue} alt="blue" onClick={()=> this.changeColor("#5D9CEC")}></img>
+                <img src={purple} alt="purple" onClick={()=> this.changeColor("#AC92EC")}></img>
+                <img src={pink} alt="pink" onClick={()=> this.changeColor("#EC87C0")}></img>
+                <img src={gray} alt="gray" onClick={()=> this.changeColor("#656D78")}></img>
             </div>
             </div>
 

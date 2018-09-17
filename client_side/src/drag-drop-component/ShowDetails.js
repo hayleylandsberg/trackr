@@ -97,7 +97,10 @@ export default class ShowDetails extends Component {
     render() {
         return (
             <form className="form-signup" onSumbit={this.handleLogin}>
-            <h2 className="h3 mb-3 font-weight-normal">Job Details</h2>
+            <div className="flex-close-modal">
+                <h2 className="h3 mb-3 font-weight-normal">Job Details</h2>
+                <img src={require("../images/letter-x-black.png")} onClick={()=> this.props.onRequestClose()} width="10px" height="10px"></img>
+            </div>
             <div className="flexForm-details">
                 <div className="detail-paragraph-1">
                     <div className="flex-detail-item">

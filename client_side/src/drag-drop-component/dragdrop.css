@@ -132,3 +132,9 @@ p.location {
     margin-left: 100px;
     margin-right: 0px;
 }
+
+.flex-close-modal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
