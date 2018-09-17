@@ -59,7 +59,7 @@ export default class AddJob extends Component {
           })
           .then((jobs) => {
             console.log('userJobs', jobs);
-            this.setState({ userJobs: jobs }, () => {
+            this.props.setJobState(jobs, () => {
               console.log("jobs", this.props.userJobs)
             })
           })

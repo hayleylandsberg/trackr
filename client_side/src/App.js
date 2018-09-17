@@ -118,10 +118,11 @@ class App extends Component {
   }.bind(this)
 
   setJobState(userJobs) {
+    console.log("Hi I'm job state", userJobs)
     this.setState({
-      ...this.state,
+      // ...this.state,
       userJobs
-    });
+    }, ()=>{console.log("HELP!", this.state.userJobs)})
   }
 
 

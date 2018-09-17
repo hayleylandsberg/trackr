@@ -56,7 +56,7 @@ class RegModal extends React.Component {
           contentLabel="Example Modal"
         >
 
-          <AddJob activeUser = {this.props.activeUser} displayAllJobs={this.props.displayAllJobs} onRequestClose={this.closeModal} />
+          <AddJob activeUser = {this.props.activeUser} displayAllJobs={this.props.displayAllJobs} onRequestClose={this.closeModal} setJobState={(job)=>{this.props.setJobState(job)}}/>
         </Modal>
       </div>
     );

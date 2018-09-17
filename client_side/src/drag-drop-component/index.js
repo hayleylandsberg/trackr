@@ -69,7 +69,7 @@ export default class Dashboard extends Component {
             offer: [],
             rejected: []
         }
-
+        console.log("drag and drop jobs", this.props.userJobs)
         this.props.userJobs.forEach ((t) => {
             jobs[t.category].push(
                 <div key={t.company} 
@@ -97,7 +97,7 @@ export default class Dashboard extends Component {
             <div className="flex-banner">
               <h2>Welcome, {this.props.user}</h2>
               {/* <button className="add-job-btn">New Job Entry</button> */}
-              <RegModal />
+              <RegModal setJobState={(job)=>{this.props.setJobState(job)}}/>
             </div>
             <div className="container-drag">
                 {/* <h2 className="header">DRAG & DROP DEMO</h2> */}
