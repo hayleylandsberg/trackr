@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './dragdrop.css';
 import RegModal from "../job-component/RegModalJob"
+import RegModalDetails from "./RegModalDetails"
 
 export default class Dashboard extends Component {
     // state = {
@@ -58,6 +59,7 @@ export default class Dashboard extends Component {
        );
     }
 
+
     render() {
         let jobs = {
             wishlist: [],
@@ -77,12 +79,14 @@ export default class Dashboard extends Component {
                     style = {{backgroundColor: t.card_color}}
                 >
                     <div>
-                        <img src={require("../images/trackr-circle-logo.png")}></img>
+                        <img src={require("../images/trackr-circle-logo.png")} alt="tackr-logo"></img>
                     </div>
                     <div className="flex-card-text">
+                        <img className="delete-btn" onClick={()=> this.props.deleteJob(this.props.userJobs.id)} src={require("../images/letter-x.png")}></img>
                         <p className="name">{t.company}</p>
                         <p className="title">{t.title}</p>
                         <p className="location">{t.location}</p>
+                        <RegModalDetails />
                     </div>
                 </div>
             );
@@ -101,14 +105,14 @@ export default class Dashboard extends Component {
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>{this.onDrop(e, "wishlist")}}>
                     <div className="job-header">WISH LIST
-                    <img src={require("../images/wishlist.png")}></img>
+                    <img src={require("../images/wishlist.png")} alt="wishlist"></img>
                     </div>
                     {jobs.wishlist}
                 </div>
                 <div className="droppable" onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "applied")}>
                      <div className="job-header">APPLIED
-                     <img src={require("../images/applied.png")}></img>
+                     <img src={require("../images/applied.png")} alt="applied"></img>
                      </div>
                     {jobs.applied}
                 </div>
@@ -116,7 +120,7 @@ export default class Dashboard extends Component {
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "phone")}>
                      <div className="job-header">PHONE
-                     <img src={require("../images/call.png")}></img>
+                     <img src={require("../images/call.png")} alt="phone"></img>
                      </div>
                      {jobs.phone}
                 </div>
@@ -124,7 +128,7 @@ export default class Dashboard extends Component {
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "onsite")}>
                      <div className="job-header">ONSITE
-                     <img src={require("../images/skyline.png")}></img>
+                     <img src={require("../images/skyline.png")} alt="onsite"></img>
                      </div>
                      {jobs.onsite}
                 </div>
@@ -132,7 +136,7 @@ export default class Dashboard extends Component {
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "offer")}>
                      <div className="job-header">OFFER
-                     <img src={require("../images/handshake.png")}></img>
+                     <img src={require("../images/handshake.png")} alt="offer"></img>
                      </div>
                      {jobs.offer}
                 </div>
@@ -140,7 +144,7 @@ export default class Dashboard extends Component {
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "rejected")}>
                      <div className="job-header">REJECTED
-                     <img src={require("../images/no-stopping.png")}></img>
+                     <img src={require("../images/no-stopping.png")} alt="rejected"></img>
                      </div>
                      {jobs.rejected}
                 </div>

@@ -1,6 +1,16 @@
 import React, { Component } from "react"
 import swal from 'sweetalert'
 import './job.css'
+import coral from '../images/coral.png'
+import orange from '../images/orange.png'
+import yellow from '../images/yellow.png'
+import green from '../images/green.png'
+import mint from '../images/mint.png'
+import aqua from '../images/aqua.png'
+import blue from '../images/blue.png'
+import pink from '../images/pink.png'
+import purple from '../images/purple.png'
+import gray from '../images/gray.png'
 
 const customStyles = {
     content : {
@@ -142,16 +152,16 @@ export default class AddJob extends Component {
             <div>
             <label htmlFor="inputdescription" className="sr-only">Select Color</label>
             <div className="flex-color">
-                <button className="color-btn"><img src={require('../images/coral.png')}></img></button>
-                <button className="color-btn"><img src={require('../images/orange.png')}></img></button>
-                <button className="color-btn"><img src={require('../images/yellow.png')}></img></button>
-                <button className="color-btn"><img src={require('../images/green.png')}></img></button>
-                <button className="color-btn"><img src={require('../images/mint.png')}></img></button>
-                <button className="color-btn"><img src={require('../images/aqua.png')}></img></button>
-                <button className="color-btn"><img src={require('../images/blue.png')}></img></button>
-                <button className="color-btn"><img src={require('../images/purple.png')}></img></button>
-                <button className="color-btn"><img src={require('../images/pink.png')}></img></button>
-                <button className="color-btn"><img src={require('../images/gray.png')}></img></button>
+                <button className="color-btn"><img src={coral} alt="coral"></img></button>
+                <button className="color-btn"><img src={orange} alt="orange"></img></button>
+                <button className="color-btn"><img src={yellow} alt="yellow"></img></button>
+                <button className="color-btn"><img src={green} alt="green"></img></button>
+                <button className="color-btn"><img src={mint} alt="mint"></img></button>
+                <button className="color-btn"><img src={aqua} alt="aqua"></img></button>
+                <button className="color-btn"><img src={blue} alt="blue"></img></button>
+                <button className="color-btn"><img src={purple} alt="purple"></img></button>
+                <button className="color-btn"><img src={pink} alt="pink"></img></button>
+                <button className="color-btn"><img src={gray} alt="gray"></img></button>
             </div>
             </div>
 

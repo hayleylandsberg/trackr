@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
-import AddJob from "./AddJob";
 import '../drag-drop-component/dragdrop.css';
+import ShowDetails from "./ShowDetails";
 
 const customStyles = {
   content : {
@@ -17,7 +17,7 @@ const customStyles = {
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 
 
-class RegModal extends React.Component {
+class RegModalDetails extends React.Component {
   constructor() {
     super();
 
@@ -47,7 +47,7 @@ class RegModal extends React.Component {
     return (
       <div>
         {/* <button className="btn btn-lg btn-gray btn-block" id="mainSignUp" type="button"  onClick={this.openModal}>Add a Doctor</button> */}
-        <button className="add-job-btn" onClick={this.openModal}>New Job Entry</button>
+        <a className="a-details" onClick={this.openModal}>Details</a>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -56,11 +56,11 @@ class RegModal extends React.Component {
           contentLabel="Example Modal"
         >
 
-          <AddJob activeUser = {this.props.activeUser} displayAllJobs={this.props.displayAllJobs} onRequestClose={this.closeModal} />
+          <ShowDetails activeUser = {this.props.activeUser} displayAllJobs={this.props.displayAllJobs} onRequestClose={this.closeModal} />
         </Modal>
       </div>
     );
   }
 }
 
-export default RegModal
+export default RegModalDetails
