@@ -22,7 +22,7 @@ export default class ShowDetails extends Component {
         location: "",
         image: "",
         salary: "",
-        url: "",
+        link: "",
         description: "",
         deadline_date: "",
         applied_date: "",
@@ -78,9 +78,8 @@ export default class ShowDetails extends Component {
                 title: this.state.title,
                 location: this.state.location,
                 salary: this.state.salary,
-                url: this.state.url,
-                description: this.state.description,
-                cat_color: this.state.card_color
+                link: this.state.link,
+                description: this.state.description
             })
         })
 
@@ -105,7 +104,7 @@ export default class ShowDetails extends Component {
                 <div className="detail-paragraph-1">
                     <div className="flex-detail-item">
                         <label htmlFor="inputCompany" className="sr-only">Company</label>
-                        <p>Test</p>
+                        <p>{this.props.userJobs.company}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputTitle" className="sr-only">Job Title</label>
@@ -120,7 +119,7 @@ export default class ShowDetails extends Component {
                         <p>Test</p>
                     </div>
                     <div className="flex-detail-item">
-                        <label htmlFor="inputUrl" className="sr-only">Job Post URL</label>
+                        <label htmlFor="inputLink" className="sr-only">Job Post Link</label>
                         <p>Test</p>
                     </div>
                     <div className="flex-detail-item">

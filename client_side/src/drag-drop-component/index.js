@@ -71,6 +71,7 @@ export default class Dashboard extends Component {
         }
         console.log("drag and drop jobs", this.props.userJobs)
         this.props.userJobs.forEach ((t) => {
+            console.log("this is the id", t)
             jobs[t.category].push(
                 <div key={t.company} 
                     onDragStart = {(e) => this.onDragStart(e, t.company)}
@@ -82,11 +83,11 @@ export default class Dashboard extends Component {
                         <img src={require("../images/trackr-circle-logo.png")} alt="tackr-logo"></img>
                     </div>
                     <div className="flex-card-text">
-                        <img className="delete-btn" onClick={()=> this.props.deleteJob(this.props.userJobs.id)} src={require("../images/letter-x.png")}></img>
+                        <img className="delete-btn" onClick={()=> this.props.deleteJob(t.pk)} src={require("../images/letter-x.png")}></img>
                         <p className="name">{t.company}</p>
                         <p className="title">{t.title}</p>
                         <p className="location">{t.location}</p>
-                        <RegModalDetails />
+                        <RegModalDetails userJobs={this.props.userJobs}/>
                     </div>
                 </div>
             );

@@ -32,7 +32,7 @@ export default class AddJob extends Component {
         location: "",
         image: "",
         salary: "",
-        url: "",
+        link: "",
         description: "",
         deadline_date: "",
         applied_date: "",
@@ -41,7 +41,8 @@ export default class AddJob extends Component {
         offer_date: "",
         card_color: "",
         category: "",
-        user_id: ""
+        user_id: "",
+        id: ""
     }
 
     activeUser = localStorage.getItem("user")
@@ -105,7 +106,7 @@ export default class AddJob extends Component {
     createJob = function(){
          // Create user in API
          let token = localStorage.getItem("token")
-         fetch(`http://127.0.0.1:8000/create_jobs/`, {
+         fetch(`http://127.0.0.1:8000/jobs/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -116,7 +117,7 @@ export default class AddJob extends Component {
                 title: this.state.title,
                 location: this.state.location,
                 salary: this.state.salary,
-                url: this.state.url,
+                link: this.state.link,
                 description: this.state.description,
                 card_color: this.state.card_color
             })
@@ -154,8 +155,8 @@ export default class AddJob extends Component {
             <input onChange={this.handleFieldChange} type="location" id="location" className="form-control" placeholder="Location" required="" autoFocus="" />
             <label htmlFor="inputSalary" className="sr-only">Salary</label>
             <input onChange={this.handleFieldChange} type="salary" id="salary" className="form-control" placeholder="Salary" required="" autoFocus="" />
-            <label htmlFor="inputUrl" className="sr-only">Job Post URL</label>
-            <input onChange={this.handleFieldChange} type="url" id="url" className="form-control" placeholder="Job Post URL" required="" autoFocus="" />
+            <label htmlFor="inputLink" className="sr-only">Job Post Link</label>
+            <input onChange={this.handleFieldChange} type="link" id="link" className="form-control" placeholder="Job Post Link" required="" autoFocus="" />
             <label htmlFor="inputdescription" className="sr-only">Description</label>
             <input onChange={this.handleFieldChange} type="description" id="description" className="form-control" placeholder="Description" required="" autoFocus="" />
             {/* <label htmlFor="inputdescription" className="sr-only">Company Logo</label>

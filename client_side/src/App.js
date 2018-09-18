@@ -7,6 +7,7 @@ import Dashboard from './drag-drop-component';
 class App extends Component {
 
   state = {
+    url: "",
     username: "",
     password: "",
     first_name: "",
@@ -65,15 +66,15 @@ class App extends Component {
   }
 
 
-  deleteJob(token) {
-    fetch(`http://127.0.0.1:8000/jobs/`, {
+  deleteJob(pk) {
+    let token = localStorage.getItem("token")
+    console.log("Delete Job", pk)
+    fetch(`http://127.0.0.1:8000/jobs/${pk}/`, {
         method: "DELETE",
         headers: {
-            "Authorization": `Token ${token}`
-        },
-        body: JSON.stringify({
-            
-        })
+          "Content-Type": "application/json",
+          "Authorization": `Token ${token}`
+        }
     })
     .then(() => {
         this.getUserJobs()
@@ -133,9 +134,9 @@ class App extends Component {
     else if (this.state.isAuth === true) {
       switch (this.state.currentView) {
         case 'home':
-          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange}  />
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange}   deleteJob={(URL)=>{this.deleteJob(URL)}}/>
         default:
-          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange} />
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange} deleteJob={(URL)=>{this.deleteJob(URL)}}/>
 
       }
     }
