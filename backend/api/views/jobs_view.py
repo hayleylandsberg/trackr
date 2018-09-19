@@ -1,17 +1,20 @@
-from rest_framework import viewsets
-from rest_framework import mixins
-from rest_framework.decorators import api_view
-from rest_framework import status
+from rest_framework import viewsets, status, mixins
 from rest_framework.response import Response
-from django.contrib.auth.models import User
-
+from django.http import Http404
 from api.models import Job
 from api.serializers import JobSerializer
 
-
 class JobViewSet(viewsets.ModelViewSet):
     serializer_class = JobSerializer
-    queryset = Job.objects.all()    
+    queryset = Job.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+#for GET ONLY
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     queryset = Job.objects.filter(user=user)
+    #     return queryset
+
+    # http_method_names = ['get', 'put', 'post', 'head']
+    

@@ -18,22 +18,57 @@ export default class Dashboard extends Component {
     //       ]
     // }
 
-    // updateCat = function(catId){
-    //     // Create user in API
-    //     fetch(`http://127.0.0.1:8000/jobs/${catId}`, {
-    //        method: "PATCH",
-    //        headers: {
-    //            "Content-Type": "application/json"
-    //        },
-    //        body: JSON.stringify({
-    //            category: this.props.catChange
-    //        })
-    //    })
-    //    // Set local storage with newly created user's id and show home view
-    // //    .then(e => {
-    // //        this.props.getUserJobs();
-    // //     })
-    // }.bind(this);
+    getUserJobs() {
+        let token = localStorage.getItem("token")
+        fetch(`http://127.0.0.1:8000/jobs/`, {
+          method: 'GET',
+          headers: {
+            "Authorization": `Token ${token}`
+          }
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((jobs) => {
+            console.log('userJobs', jobs);
+            this.props.setJobState(jobs, () => {
+              console.log("jobs", this.props.userJobs)
+            })
+          })
+          .catch((err) => {
+            console.log("fetch no like you, brah", err);
+          })
+        }
+
+    displaySuccess(data) {
+        console.log("Category changed!", data)
+    }
+
+    updateCat = function(job){
+        // Create user in API
+        let token = localStorage.getItem("token")
+        fetch(`${job.url}`, {
+           method: "PATCH",
+           headers: {
+               "Content-Type": "application/json",
+               "Authorization": `Token ${token}`
+           },
+           body: JSON.stringify({
+               category: job.category
+           })
+       })
+       .then((response) => {
+           return response.json()
+       })
+       .then((response) => {
+           this.getUserJobs()
+           this.displaySuccess(response)
+       })
+       // Set local storage with newly created user's id and show home view
+    //    .then(e => {
+    //        this.props.getUserJobs();
+    //     })
+    }.bind(this);
 
     onDragStart = (ev, id) => {
         console.log('dragstart:',id);
@@ -45,18 +80,21 @@ export default class Dashboard extends Component {
     }
 
     onDrop = (ev, cat) => {
+        console.log("Hi there, I'm attempting to drop")
        let id = ev.dataTransfer.getData("id");
-       
        let jobs = this.props.userJobs.filter((job) => {
-           if (job.name == id) {
+        console.log("What is id and job?", id, job)
+           if (job.company == id) {
                job.category = cat;
+               console.log("What cat ondrop", job.category)
+               this.updateCat(job);
            }
-           return job;
+           return jobs
        });
 
-       this.props.setJobState(
-           jobs
-       );
+    //    this.props.setJobState(
+    //        jobs
+    //    );
     }
 
 
@@ -87,7 +125,7 @@ export default class Dashboard extends Component {
                         <p className="name">{t.company}</p>
                         <p className="title">{t.title}</p>
                         <p className="location">{t.location}</p>
-                        <RegModalDetails userJobs={this.props.userJobs}/>
+                        <RegModalDetails job={t}/>
                     </div>
                 </div>
             );

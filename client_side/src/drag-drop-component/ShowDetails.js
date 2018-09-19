@@ -104,27 +104,27 @@ export default class ShowDetails extends Component {
                 <div className="detail-paragraph-1">
                     <div className="flex-detail-item">
                         <label htmlFor="inputCompany" className="sr-only">Company</label>
-                        <p>{this.props.userJobs.company}</p>
+                        <p>{this.props.job.company}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputTitle" className="sr-only">Job Title</label>
-                        <p>Test</p>
+                        <p>{this.props.job.title}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputLocation" className="sr-only">Location</label>
-                        <p>Test</p>
+                        <p>{this.props.job.location}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputSalary" className="sr-only">Salary</label>
-                        <p>Test</p>
+                        <p>${this.props.job.salary}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputLink" className="sr-only">Job Post Link</label>
-                        <p>Test</p>
+                        <p>{this.props.job.link}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputdescription" className="sr-only">Description</label>
-                        <p>Test</p>
+                        <p>{this.props.job.description}</p>
                     </div>
                 </div>
             {/* <label htmlFor="inputdescription" className="sr-only">Company Logo</label>
@@ -140,23 +140,23 @@ export default class ShowDetails extends Component {
                 <div className="detail-paragraph-2">
                     <div className="flex-detail-item">
                         <label htmlFor="inputUrl" className="sr-only">Deadline Date</label>
-                        <p>01-01-2018</p>
+                        <p>{this.props.job.deadline_date}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputUrl" className="sr-only">Applied Date</label>
-                        <p>01-01-2018</p>
+                        <p>{this.props.job.applied_date}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputUrl" className="sr-only">Interview Date 1</label>
-                        <p>01-01-2018</p>
+                        <p>{this.props.job.interview_date1}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputUrl" className="sr-only">Interview Date 2</label>
-                        <p>01-01-2018</p>
+                        <p>{this.props.job.interview_date2}</p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputUrl" className="sr-only">Offer Date</label>
-                        <p>01-01-2018</p>
+                        <p>{this.props.job.offer_date}</p>
                     </div>
                 </div>
             </div>

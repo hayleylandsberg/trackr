@@ -21,7 +21,6 @@ class App extends Component {
     userJobs: [],
     jobTasks: "",
     jobNotes: "",
-    catChange: ''
   }
 
   componentDidMount() {
@@ -134,9 +133,9 @@ class App extends Component {
     else if (this.state.isAuth === true) {
       switch (this.state.currentView) {
         case 'home':
-          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange}   deleteJob={(URL)=>{this.deleteJob(URL)}}/>
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} deleteJob={(URL)=>{this.deleteJob(URL)}}/>
         default:
-          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} catChange={this.state.catChange} deleteJob={(URL)=>{this.deleteJob(URL)}}/>
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} deleteJob={(URL)=>{this.deleteJob(URL)}}/>
 
       }
     }
