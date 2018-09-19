@@ -80,3 +80,33 @@ h2 {
   font-size: .75em;
   margin: 0 auto;
 }
+
+.sign-up {
+  font-weight: lighter;
+  display: flex;
+  flex-direction: row;
+  margin: 15px auto;
+}
+
+.sign-up-click {
+  text-decoration: underline;
+}
+
+.flexForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-up-btn {
+  background-color: #276EF1;
+  color: white;
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.btn-center-flex {
+  display: flex;
+  justify-content: center;
+}
