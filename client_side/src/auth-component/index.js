@@ -115,11 +115,7 @@ class Auth extends Component {
     name="password" value={password} onChange={e => this.onChange(e)}></input>
     <button className="btn-log-on" onClick = {() => register ? this.register() : this.login()}>Log On</button>
   </div>
-</div>
-
-
-
-          
+</div>    
       </div>
     );
   }

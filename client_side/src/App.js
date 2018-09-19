@@ -7,6 +7,7 @@ import Dashboard from './drag-drop-component';
 class App extends Component {
 
   state = {
+    url: "",
     username: "",
     password: "",
     first_name: "",
@@ -16,7 +17,10 @@ class App extends Component {
     register: false,
     showUserForm: false,
     user: "",
-    showSellForm: false
+    showSellForm: false,
+    userJobs: [],
+    jobTasks: "",
+    jobNotes: "",
   }
 
   componentDidMount() {
@@ -29,11 +33,52 @@ class App extends Component {
         user: user
       });
     }
+    this.getUserJobs();
+    // this.getJobNotes();
+    // this.getJobTasks();
   }
 
   setAuthState(authObj) {
     this.setState(authObj)
   }
+
+  getUserJobs() {
+  let token = localStorage.getItem("token")
+  fetch(`http://127.0.0.1:8000/jobs/`, {
+    method: 'GET',
+    headers: {
+      "Authorization": `Token ${token}`
+    }
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((jobs) => {
+      console.log('userJobs', jobs);
+      this.setState({ userJobs: jobs }, () => {
+        console.log("jobs", this.state.userJobs)
+      })
+    })
+    .catch((err) => {
+      console.log("fetch no like you, brah", err);
+    })
+  }
+
+
+  deleteJob(pk) {
+    let token = localStorage.getItem("token")
+    console.log("Delete Job", pk)
+    fetch(`http://127.0.0.1:8000/jobs/${pk}/`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Token ${token}`
+        }
+    })
+    .then(() => {
+        this.getUserJobs()
+    })
+}
 
 
   logOut() {
@@ -72,6 +117,15 @@ class App extends Component {
 
   }.bind(this)
 
+  setJobState(userJobs) {
+    console.log("Hi I'm job state", userJobs)
+    this.setState({
+      // ...this.state,
+      userJobs
+    }, ()=>{console.log("HELP!", this.state.userJobs)})
+  }
+
+
   View = () => {
     if (this.state.isAuth === false) {
       return this.state.showUserForm ? <Auth authState={this.state} setAuthState={(obj) => this.setAuthState(obj)} /> : null
@@ -79,23 +133,13 @@ class App extends Component {
     else if (this.state.isAuth === true) {
       switch (this.state.currentView) {
         case 'home':
-          return <Dashboard user={this.state.user}/>
-        // case 'profile':
-        //   return <Profile resource={this.state.profileData} />
-        // case 'addPet':
-        //   return <AddPetForm viewHandler={this.showView} />
-        // case 'addAllergy':
-        //   return <AllergiesForm viewHandler={this.showView} userPets={this.state.userPets} />
-        // // addCommand
-        // case 'addCommand':
-        //   return <CommandsForm viewHandler={this.showView} userPets={this.state.userPets} />
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} deleteJob={(URL)=>{this.deleteJob(URL)}}/>
         default:
-          return <Dashboard user={this.state.user}/>
+          return <Dashboard user={this.state.user} userJobs={this.state.userJobs} setJobState={(jobs)=> this.setJobState(jobs)} deleteJob={(URL)=>{this.deleteJob(URL)}}/>
 
       }
     }
   }
-
 
 
   

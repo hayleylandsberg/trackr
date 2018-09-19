@@ -5,7 +5,16 @@ from api.models import Job
 from api.serializers import JobSerializer
 
 class JobViewSet(viewsets.ModelViewSet):
-    queryset = Job.objects.all()
     serializer_class = JobSerializer
+    queryset = Job.objects.all()
 
-    http_method_names = ['get', 'put', 'post', 'head']
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+#for GET ONLY
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     queryset = Job.objects.filter(user=user)
+    #     return queryset
+
+    # http_method_names = ['get', 'put', 'post', 'head']
+    

@@ -8,7 +8,7 @@ class Job(models.Model):
   location = models.CharField(max_length=100)
   image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, null=True)
   salary = models.IntegerField()
-  url = models.URLField(max_length=250)
+  link = models.URLField(max_length=250)
   description = models.TextField(max_length=2000)
   deadline_date = models.DateField(null=True)
   applied_date = models.DateField(null=True)

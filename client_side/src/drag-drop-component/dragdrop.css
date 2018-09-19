@@ -12,8 +12,16 @@
     margin: 10px auto;
     color: white;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-card-text {
+    display: flex;
     flex-direction: column;
-    justify-content: right;
+    margin-left: 20px;
+    padding-top: 5px;
 }
 
 div .droppable {
@@ -33,11 +41,19 @@ p {
     text-align: left;
 }
 
-.task-header {
+.job-header {
     margin-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     font-weight: 100;
     border-bottom: .1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.job-header img {
+    width: 32px;
+    height: 32px;
+    margin: 10px auto 1px;
 }
 
 p.name {
@@ -75,4 +91,50 @@ p.location {
     justify-content: space-between;
     margin: 20px 60px 0px;
     align-items: center;
+}
+
+.fake-btn {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    width: 70px;
+    height: 80px;
+}
+
+.a-details {
+    float: right;
+    margin-top: 5px;
+    font-size: .75em;
+    text-decoration: underline;
+}
+
+.flex-detail-item {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-detail-item p {
+    font-weight: lighter;
+    margin-left: 10px;
+    text-align: right;
+}
+
+.flexForm-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.delete-btn {
+    width: 10px;
+    justify-content: right;
+    padding-top: 2px;
+    margin-left: 100px;
+    margin-right: 0px;
+}
+
+.flex-close-modal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

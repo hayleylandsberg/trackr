@@ -2,12 +2,8 @@ from rest_framework import serializers
 from api.models import Job
 
 class JobSerializer(serializers.HyperlinkedModelSerializer):
-    """Jobs Serializer
+    user = serializers.ReadOnlyField(source='user.url')
 
-    Author: Hayley Landsberg
-    
-    This serializer represents JSON for the Job resource.
-    """
     class Meta: 
         model = Job
-        fields = '__all__'
+        fields = ("url", "pk", "user", "company", "title", "location", "image", "salary", "link", "description", "deadline_date", "applied_date", "interview_date1", "interview_date2", "offer_date", "card_color", "category")
