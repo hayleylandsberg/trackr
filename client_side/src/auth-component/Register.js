@@ -24,6 +24,7 @@ export default class Register extends Component {
         username: "",
         password: ""
     }
+      
     handleFieldChange = function (evt) {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value

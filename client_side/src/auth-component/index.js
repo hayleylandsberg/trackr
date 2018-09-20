@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./auth.css";
 import RegModalRegister from "./RegModalRegister"
+import swal from 'sweetalert';
 
 class Auth extends Component {
 
@@ -25,10 +26,16 @@ class Auth extends Component {
     })
     .then((response) => {
       console.log('"auth', response);
-      return response.json();
+      if(response.statusText === "Bad Request"){
+        swal("Oops!", "Username/Password do not match. Please try again or register for a new account.", "warning");
+        this.props.setAuthState({isAuth : false})
+        return Promise.reject(response)
+      }
+      if(response.statusText === "OK"){
+        return response.json();
+      }
     })
     .then((responseToken) => {
-      console.log('converted token', responseToken.token);
       localStorage.setItem("token", responseToken.token)
       localStorage.setItem("user", this.props.authState.username)
       return this.props.setAuthState({
@@ -67,6 +74,13 @@ class Auth extends Component {
     .then()
   }
 
+  displayRegister() {
+    this.props.setAuthState({
+      register: true,
+      showUserForm: true
+    })
+  }
+
   render() {
     const {
       username,
@@ -78,7 +92,7 @@ class Auth extends Component {
     } = this.props.authState
     return (
       <div>
-        {register &&
+        {/* {register &&
         <div>
           <input
             type="text"
@@ -102,7 +116,7 @@ class Auth extends Component {
             onChange={e => this.onChange(e)}
           />
         </div>
-        }
+        } */}
         <div className="flex-app">
   <div>
     <h1><span>👋</span> Hi there!</h1>
@@ -114,9 +128,40 @@ class Auth extends Component {
     <input className="input-log-on" placeholder="Username" type="text" name="username" value={username} onChange={e => this.onChange(e)}></input>
     <input className="input-log-on" placeholder="Password" type="password"
     name="password" value={password} onChange={e => this.onChange(e)}></input>
+    
+    {register &&
+        <div className="flex-log-on">
+          <input
+            type="text"
+            placeholder="first name"
+            className="input-log-on"
+            name="first_name"
+            value={first_name}
+            onChange={e => this.onChange(e)}
+          />
+          <input
+            type="text"
+            placeholder="last name"
+            className="input-log-on"
+            name="last_name"
+            value={last_name}
+            onChange={e => this.onChange(e)}
+          />
+          <input
+            type="email"
+            placeholder="email"
+            className="input-log-on"
+            name="email"
+            value={email}
+            onChange={e => this.onChange(e)}
+          />
+        </div>
+        }
+        
     <button className="btn-log-on" onClick = {() => register ? this.register() : this.login()}>Log On</button>
     <div className="sign-up">
-      <RegModalRegister />
+    <p>Not a member? <span className="sign-up-click" onClick={()=> this.displayRegister()}>Sign up now!</span></p>
+      {/* <RegModalRegister /> */}
     </div>
   </div>
 </div>    
