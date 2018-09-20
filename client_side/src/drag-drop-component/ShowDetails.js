@@ -120,7 +120,7 @@ export default class ShowDetails extends Component {
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputLink" className="sr-only">Job Post Link</label>
-                        <p>{this.props.job.link}</p>
+                        <p><a href={this.props.job.link}>See job posting</a></p>
                     </div>
                     <div className="flex-detail-item">
                         <label htmlFor="inputdescription" className="sr-only">Description</label>
