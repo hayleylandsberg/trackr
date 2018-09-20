@@ -15,7 +15,7 @@ class App extends Component {
     email: "",
     isAuth: false,
     register: false,
-    showUserForm: false,
+    showUserForm: true,
     user: "",
     showSellForm: false,
     userJobs: [],
