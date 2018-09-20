@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./auth.css";
+import RegModalRegister from "./RegModalRegister"
 
 class Auth extends Component {
 
@@ -114,6 +115,9 @@ class Auth extends Component {
     <input className="input-log-on" placeholder="Password" type="password"
     name="password" value={password} onChange={e => this.onChange(e)}></input>
     <button className="btn-log-on" onClick = {() => register ? this.register() : this.login()}>Log On</button>
+    <div className="sign-up">
+      <RegModalRegister />
+    </div>
   </div>
 </div>    
       </div>
