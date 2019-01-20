@@ -4,7 +4,7 @@ Trackr is a CRUD application that provides users with an easy and fun way to org
 
 *To Clone*
 - Click the green Clone or Download button above and copy the provided link.
-- Open the terminal and and type git clone and paste the link.
+- Open the terminal and type git clone and paste the link.
 - Once cloned, navigate to the project folder and then to the client_side folder.
 - Then type npm install into the terminal.
 - To start the app, type npm start 
